@@ -1,0 +1,30 @@
+{
+  "name": "projetorpg",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/droanle/projetoRPG.git"
+  },
+  "keywords": [
+    "RPG",
+    "NodeJS",
+    "API"
+  ],
+  "author": "Leandro de Meirelles",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/droanle/projetoRPG/issues"
+  },
+  "homepage": "https://github.com/droanle/projetoRPG#readme",
+  "dependencies": {
+    "express": "^4.18.2",
+    "nodemon": "^2.0.20",
+    "path": "^0.12.7",
+    "serve-favicon": "^2.5.0"
+  }
+}
