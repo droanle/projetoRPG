@@ -1,23 +1,32 @@
 const express = require("express");
+const mongoose = require('mongoose');
+const mongoCredentials = require('./src/Database/credentials');
 const favicon = require('serve-favicon');
 const path = require('path');
 const app = express();
 
-const error404 = path.join(__dirname, "public/404Error.html");
+const error404 = path.join(__dirname, "Public/404Error.html");
 
-var frontRouter = require('./routers/frontRouter');
-var apiRouter = require('./routers/apiRouter');
+const frontRouter = require('./src/Controller/frontRouter');
+const apiRouter = require('./src/Controller/apiRouter');
 
-// USE
+// Coneção com o banco
+global.db = mongoose.connect(
+    `mongodb://${mongoCredentials.HOSTNAME}:${mongoCredentials.PORT}/${mongoCredentials.DB}?authMechanism=DEFAULT`
+);
+ 
+// Use
 app.use('/', frontRouter);
-app.use('/api/', apiRouter);
+app.use('/api', apiRouter);
 
-app.use(express.static(path.join(__dirname, "public")));
-app.use(favicon(path.join(__dirname, 'public', 'img/icon', 'icon_rpg2.png')));
+app.use(express.static(path.join(__dirname, "Public")));
+app.use(favicon(path.join(__dirname, 'Public', 'img/icon', 'icon_rpg2.png')));
 
+// Status Scenario
 app.use((req, res) => res.status(404).sendFile(error404));
 
-app.listen(3000, () => {
-    console.log("Servidor ligado e disponivel em: http://localhost:3000");
+// Start
+app.listen(4000, () => {
+    console.log("Servidor ligado e disponivel em: http://localhost:4000");
     console.log("Para desligar o server, digite: ctrl + C")
 })
